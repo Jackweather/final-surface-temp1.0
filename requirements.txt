@@ -6,3 +6,4 @@ gunicorn==20.1.0
 werkzeug==2.2.3
 numpy==1.24.0
 folium==0.12.1  # If you're using folium for maps, keep this line
+basemap==1.3.2
