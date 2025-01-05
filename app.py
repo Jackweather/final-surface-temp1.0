@@ -1,12 +1,11 @@
-from flask import Flask, send_file, render_template
+from flask import Flask, send_file, render_template_string
 import xml.etree.ElementTree as ET
 import matplotlib.pyplot as plt
 from mpl_toolkits.basemap import Basemap
 import requests
 import io
 
-# Changed app to application for Vercel compatibility
-application = Flask(__name__)  
+app = Flask(__name__)
 
 # Function to parse XML from a file or URL and extract data
 def get_temperature_data_from_xml(xml_data):
@@ -37,10 +36,10 @@ def get_temperature_color(surface_temp):
         return 'black'  # Above freezing
 
 # API endpoint to fetch the map
-@application.route('/temperature-map', methods=['GET'])
+@app.route('/temperature-map', methods=['GET'])
 def temperature_map():
     # Fetch XML data from a URL
-    url = "https://www.thruway.ny.gov/xml/netdata/swis.xml"
+    url = "https://www.thruway.ny.gov/xml/netdata/swis.xml"  # Replace with the actual XML URL or local file path
     response = requests.get(url)
     xml_data = response.text
 
@@ -80,8 +79,24 @@ def temperature_map():
     return send_file(img_io, mimetype='image/png')
 
 # Root route to display the HTML page
-@application.route('/')
+@app.route('/')
 def index():
-    return render_template('index.html')
+    # HTML content that links to the temperature map
+    html_content = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Surface Temperature Map</title>
+    </head>
+    <body>
+        <h1>Surface Temperature of New York and Neighboring States</h1>
+        <img id="temperatureMap" src="/temperature-map" alt="Temperature Map">
+    </body>
+    </html>
+    """
+    return render_template_string(html_content)
 
-# Removed the __main__ block as it is not required for Vercel deployment
+if __name__ == '__main__':
+    app.run(debug=True, port=5500)
