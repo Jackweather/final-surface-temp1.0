@@ -2,3 +2,4 @@ Flask==2.2.3
 requests==2.28.1
 matplotlib==3.6.2
 cartopy==0.21.0  # Instead of basemap
+gunicorn==20.1.0
