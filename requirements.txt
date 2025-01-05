@@ -4,3 +4,4 @@ matplotlib==3.6.2
 cartopy==0.21.0  # Instead of basemap
 gunicorn==20.1.0
 werkzeug==2.2.3
+numpy==1.24.0  # You can specify the version that works best for your project
