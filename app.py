@@ -68,6 +68,18 @@ def temperature_map():
     # Plot surface temperature data with the custom colors
     scatter = m.scatter(x, y, c=colors, marker='o', s=100, edgecolors="black", alpha=0.7)
 
+    # Add a legend (key) in the top right
+    plt.legend(
+        handles=[
+            plt.Line2D([0], [0], marker='o', color='w', markerfacecolor='darkblue', markersize=10, label='Below Freezing (<32°F)'),
+            plt.Line2D([0], [0], marker='o', color='w', markerfacecolor='yellow', markersize=10, label='Near Freezing (32-40°F)'),
+            plt.Line2D([0], [0], marker='o', color='w', markerfacecolor='black', markersize=10, label='Above Freezing (>40°F)')
+        ],
+        loc='upper right',
+        title='Temperature Ranges',
+        fontsize=10
+    )
+
     # Save the plot to a BytesIO object instead of a file
     img_io = io.BytesIO()
     plt.title("Surface Temperature of New York and Neighboring States")
