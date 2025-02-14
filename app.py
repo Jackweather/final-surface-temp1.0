@@ -103,7 +103,7 @@ def index():
         <title>Surface Temperature Map</title>
     </head>
     <body>
-        <h1>Surface Temperature of New York and Neighboring States</h1>
+        <h1> New York Thruway Road Surface Temperature </h1>
         <img id="temperatureMap" src="/temperature-map" alt="Temperature Map">
     </body>
     </html>
