@@ -82,7 +82,7 @@ def temperature_map():
 
     # Save the plot to a BytesIO object instead of a file
     img_io = io.BytesIO()
-    plt.title("Surface Temperature of New York and Neighboring States")
+    plt.title("New York Thruway Road Surface Temperature")
     plt.savefig(img_io, format='png')
     img_io.seek(0)
     plt.close()
